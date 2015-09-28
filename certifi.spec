@@ -4,7 +4,7 @@
 #
 Name     : certifi
 Version  : 2015.9.6.2
-Release  : 8
+Release  : 9
 URL      : https://pypi.python.org/packages/source/c/certifi/certifi-2015.9.6.2.tar.gz
 Source0  : https://pypi.python.org/packages/source/c/certifi/certifi-2015.9.6.2.tar.gz
 Summary  : Python package for providing Mozilla's CA Bundle.
