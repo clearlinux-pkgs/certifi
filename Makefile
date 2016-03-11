@@ -1,5 +1,5 @@
 PKG_NAME := certifi
-URL := https://pypi.python.org/packages/source/c/certifi/certifi-2015.11.20.1.tar.gz
+URL := https://pypi.python.org/packages/source/c/certifi/certifi-2016.2.28.tar.gz
 ARCHIVES :=
 
 include ../common/Makefile.common
