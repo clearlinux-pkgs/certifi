@@ -4,7 +4,7 @@
 #
 Name     : certifi
 Version  : 2016.2.28
-Release  : 18
+Release  : 19
 URL      : https://pypi.python.org/packages/source/c/certifi/certifi-2016.2.28.tar.gz
 Source0  : https://pypi.python.org/packages/source/c/certifi/certifi-2016.2.28.tar.gz
 Summary  : Python package for providing Mozilla's CA Bundle.
@@ -36,6 +36,7 @@ python components for the certifi package.
 %setup -q -n certifi-2016.2.28
 
 %build
+export LANG=C
 python2 setup.py build -b py2
 python3 setup.py build -b py3
 
