@@ -4,7 +4,7 @@
 #
 Name     : certifi
 Version  : 2016.9.26
-Release  : 22
+Release  : 23
 URL      : http://pypi.debian.net/certifi/certifi-2016.9.26.tar.gz
 Source0  : http://pypi.debian.net/certifi/certifi-2016.9.26.tar.gz
 Summary  : Python package for providing Mozilla's CA Bundle.
