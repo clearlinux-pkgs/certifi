@@ -6,13 +6,14 @@
 #
 Name     : certifi
 Version  : 2017.7.27.1
-Release  : 27
+Release  : 28
 URL      : https://pypi.debian.net/certifi/certifi-2017.7.27.1.tar.gz
 Source0  : https://pypi.debian.net/certifi/certifi-2017.7.27.1.tar.gz
 Source99 : https://pypi.debian.net/certifi/certifi-2017.7.27.1.tar.gz.asc
 Summary  : Python package for providing Mozilla's CA Bundle.
 Group    : Development/Tools
 License  : MPL-2.0
+Requires: certifi-legacypython
 Requires: certifi-python
 BuildRequires : pbr
 BuildRequires : pip
@@ -30,9 +31,18 @@ BuildRequires : setuptools
         Installation
         ------------
 
+%package legacypython
+Summary: legacypython components for the certifi package.
+Group: Default
+
+%description legacypython
+legacypython components for the certifi package.
+
+
 %package python
 Summary: python components for the certifi package.
 Group: Default
+Requires: certifi-legacypython
 
 %description python
 python components for the certifi package.
@@ -46,12 +56,12 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1501174794
+export SOURCE_DATE_EPOCH=1504999867
 python2 setup.py build -b py2
 python3 setup.py build -b py3
 
 %install
-export SOURCE_DATE_EPOCH=1501174794
+export SOURCE_DATE_EPOCH=1504999867
 rm -rf %{buildroot}
 python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
 python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
@@ -62,7 +72,10 @@ echo ----[ mark ]----
 %files
 %defattr(-,root,root,-)
 
-%files python
+%files legacypython
 %defattr(-,root,root,-)
 /usr/lib/python2*/*
+
+%files python
+%defattr(-,root,root,-)
 /usr/lib/python3*/*
