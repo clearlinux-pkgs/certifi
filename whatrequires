@@ -1,2 +1,7 @@
 # This file contains recursive sources that require this package
+ceph
+gensim
+jupyter-notebook-gist
+requests
+smart_open
 urllib3
