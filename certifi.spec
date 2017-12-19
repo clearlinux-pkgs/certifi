@@ -6,7 +6,7 @@
 #
 Name     : certifi
 Version  : 2017.11.5
-Release  : 32
+Release  : 33
 URL      : https://pypi.debian.net/certifi/certifi-2017.11.5.tar.gz
 Source0  : https://pypi.debian.net/certifi/certifi-2017.11.5.tar.gz
 Source99 : https://pypi.debian.net/certifi/certifi-2017.11.5.tar.gz.asc
