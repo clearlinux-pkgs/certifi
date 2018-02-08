@@ -1,5 +1,5 @@
 PKG_NAME := certifi
-URL = https://pypi.debian.net/certifi/certifi-2017.11.5.tar.gz
-
+URL = https://pypi.debian.net/certifi/certifi-2018.1.18.tar.gz
+ARCHIVES = 
 
 include ../common/Makefile.common

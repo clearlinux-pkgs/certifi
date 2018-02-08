@@ -1,5 +1,7 @@
 # This file contains recursive sources that require this package
+acme
 ceph
+certbot
 gensim
 jupyter-notebook-gist
 requests
