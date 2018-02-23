@@ -6,14 +6,13 @@
 #
 Name     : certifi
 Version  : 2018.1.18
-Release  : 35
+Release  : 36
 URL      : https://pypi.debian.net/certifi/certifi-2018.1.18.tar.gz
 Source0  : https://pypi.debian.net/certifi/certifi-2018.1.18.tar.gz
 Source99 : https://pypi.debian.net/certifi/certifi-2018.1.18.tar.gz.asc
 Summary  : Python package for providing Mozilla's CA Bundle.
 Group    : Development/Tools
 License  : MPL-2.0
-Requires: certifi-legacypython
 Requires: certifi-python3
 Requires: certifi-python
 BuildRequires : pbr
@@ -44,7 +43,6 @@ legacypython components for the certifi package.
 %package python
 Summary: python components for the certifi package.
 Group: Default
-Requires: certifi-legacypython
 Requires: certifi-python3
 
 %description python
@@ -68,12 +66,12 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1518048129
+export SOURCE_DATE_EPOCH=1519350684
 python2 setup.py build -b py2
 python3 setup.py build -b py3
 
 %install
-export SOURCE_DATE_EPOCH=1518048129
+export SOURCE_DATE_EPOCH=1519350684
 rm -rf %{buildroot}
 python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
 python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
