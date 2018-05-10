@@ -6,7 +6,7 @@
 #
 Name     : certifi
 Version  : 2018.4.16
-Release  : 37
+Release  : 38
 URL      : https://pypi.debian.net/certifi/certifi-2018.4.16.tar.gz
 Source0  : https://pypi.debian.net/certifi/certifi-2018.4.16.tar.gz
 Source99 : https://pypi.debian.net/certifi/certifi-2018.4.16.tar.gz.asc
