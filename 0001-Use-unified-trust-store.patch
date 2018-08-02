@@ -1,0 +1,65 @@
+From 32783e62dad2a7596088aed55e898b0dc793a0ac Mon Sep 17 00:00:00 2001
+From: George T Kramer <george.t.kramer@intel.com>
+Date: Thu, 2 Aug 2018 14:43:28 -0700
+Subject: [PATCH] Use unified trust store
+
+Expose user-managed CA certs to applications that require the certifi
+package by using the unified trust store.  This has a bonus side-effect
+of no longer distributing a copy of the Mozilla CA certs and instead
+relying on those distributed as a part of the ca-certs package.
+---
+ MANIFEST.in                  | 2 +-
+ certifi.egg-info/SOURCES.txt | 1 -
+ certifi/core.py              | 4 +---
+ setup.py                     | 1 -
+ 4 files changed, 2 insertions(+), 6 deletions(-)
+
+diff --git a/MANIFEST.in b/MANIFEST.in
+index 6077b5f..24ad572 100644
+--- a/MANIFEST.in
++++ b/MANIFEST.in
+@@ -1 +1 @@
+-include MANIFEST.in README.rst LICENSE certifi/cacert.pem
++include MANIFEST.in README.rst LICENSE
+diff --git a/certifi.egg-info/SOURCES.txt b/certifi.egg-info/SOURCES.txt
+index 04773ea..a45014e 100644
+--- a/certifi.egg-info/SOURCES.txt
++++ b/certifi.egg-info/SOURCES.txt
+@@ -5,7 +5,6 @@ setup.cfg
+ setup.py
+ certifi/__init__.py
+ certifi/__main__.py
+-certifi/cacert.pem
+ certifi/core.py
+ certifi.egg-info/PKG-INFO
+ certifi.egg-info/SOURCES.txt
+diff --git a/certifi/core.py b/certifi/core.py
+index eab9d1d..d52edb2 100644
+--- a/certifi/core.py
++++ b/certifi/core.py
+@@ -19,9 +19,7 @@ class DeprecatedBundleWarning(DeprecationWarning):
+ 
+ 
+ def where():
+-    f = os.path.dirname(__file__)
+-
+-    return os.path.join(f, 'cacert.pem')
++    return '/var/cache/ca-certs/compat/ca-roots.pem'
+ 
+ 
+ def old_where():
+diff --git a/setup.py b/setup.py
+index 2c20c26..591673d 100755
+--- a/setup.py
++++ b/setup.py
+@@ -44,7 +44,6 @@ setup(
+         'certifi',
+     ],
+     package_dir={'certifi': 'certifi'},
+-    package_data={'certifi': ['*.pem']},
+     # data_files=[('certifi', ['certifi/cacert.pem'])],
+     include_package_data=True,
+     zip_safe=False,
+-- 
+2.18.0
+
