@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x70FE17F8A643E15B (lukasa@keybase.io)
 #
 Name     : certifi
-Version  : 2018.4.16
-Release  : 47
-URL      : https://pypi.debian.net/certifi/certifi-2018.4.16.tar.gz
-Source0  : https://pypi.debian.net/certifi/certifi-2018.4.16.tar.gz
-Source99 : https://pypi.debian.net/certifi/certifi-2018.4.16.tar.gz.asc
+Version  : 2018.8.13
+Release  : 48
+URL      : https://files.pythonhosted.org/packages/53/0d/d1d13a63563cc50a27b310f5612645bef06d29a5022a7e79ac659dd0fc50/certifi-2018.8.13.tar.gz
+Source0  : https://files.pythonhosted.org/packages/53/0d/d1d13a63563cc50a27b310f5612645bef06d29a5022a7e79ac659dd0fc50/certifi-2018.8.13.tar.gz
+Source99 : https://files.pythonhosted.org/packages/53/0d/d1d13a63563cc50a27b310f5612645bef06d29a5022a7e79ac659dd0fc50/certifi-2018.8.13.tar.gz.asc
 Summary  : Python package for providing Mozilla's CA Bundle.
 Group    : Development/Tools
 License  : MPL-2.0
@@ -17,11 +17,8 @@ Requires: certifi-python3
 Requires: certifi-license
 Requires: certifi-python
 Requires: ca-certs
-BuildRequires : pbr
-BuildRequires : pip
-BuildRequires : python-dev
-BuildRequires : python3-dev
-BuildRequires : setuptools
+BuildRequires : buildreq-distutils23
+BuildRequires : buildreq-distutils3
 Patch1: 0001-Use-unified-trust-store.patch
 
 %description
@@ -70,7 +67,7 @@ python3 components for the certifi package.
 
 
 %prep
-%setup -q -n certifi-2018.4.16
+%setup -q -n certifi-2018.8.13
 %patch1 -p1
 
 %build
@@ -78,12 +75,12 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1533320310
+export SOURCE_DATE_EPOCH=1534166493
 python2 setup.py build -b py2
 python3 setup.py build -b py3
 
 %install
-export SOURCE_DATE_EPOCH=1533320310
+export SOURCE_DATE_EPOCH=1534166493
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/certifi
 cp LICENSE %{buildroot}/usr/share/doc/certifi/LICENSE
