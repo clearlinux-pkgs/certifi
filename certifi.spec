@@ -5,17 +5,17 @@
 # Source0 file verified with key 0x70FE17F8A643E15B (lukasa@keybase.io)
 #
 Name     : certifi
-Version  : 2018.8.24
-Release  : 49
-URL      : https://files.pythonhosted.org/packages/e1/0f/f8d5e939184547b3bdc6128551b831a62832713aa98c2ccdf8c47ecc7f17/certifi-2018.8.24.tar.gz
-Source0  : https://files.pythonhosted.org/packages/e1/0f/f8d5e939184547b3bdc6128551b831a62832713aa98c2ccdf8c47ecc7f17/certifi-2018.8.24.tar.gz
-Source99 : https://files.pythonhosted.org/packages/e1/0f/f8d5e939184547b3bdc6128551b831a62832713aa98c2ccdf8c47ecc7f17/certifi-2018.8.24.tar.gz.asc
+Version  : 2018.10.15
+Release  : 50
+URL      : https://files.pythonhosted.org/packages/41/b6/4f0cefba47656583217acd6cd797bc2db1fede0d53090fdc28ad2c8e0716/certifi-2018.10.15.tar.gz
+Source0  : https://files.pythonhosted.org/packages/41/b6/4f0cefba47656583217acd6cd797bc2db1fede0d53090fdc28ad2c8e0716/certifi-2018.10.15.tar.gz
+Source99 : https://files.pythonhosted.org/packages/41/b6/4f0cefba47656583217acd6cd797bc2db1fede0d53090fdc28ad2c8e0716/certifi-2018.10.15.tar.gz.asc
 Summary  : Python package for providing Mozilla's CA Bundle.
 Group    : Development/Tools
 License  : MPL-2.0
-Requires: certifi-python3
-Requires: certifi-license
-Requires: certifi-python
+Requires: certifi-license = %{version}-%{release}
+Requires: certifi-python = %{version}-%{release}
+Requires: certifi-python3 = %{version}-%{release}
 Requires: ca-certs
 BuildRequires : buildreq-distutils23
 BuildRequires : buildreq-distutils3
@@ -51,7 +51,7 @@ license components for the certifi package.
 %package python
 Summary: python components for the certifi package.
 Group: Default
-Requires: certifi-python3
+Requires: certifi-python3 = %{version}-%{release}
 
 %description python
 python components for the certifi package.
@@ -67,7 +67,7 @@ python3 components for the certifi package.
 
 
 %prep
-%setup -q -n certifi-2018.8.24
+%setup -q -n certifi-2018.10.15
 %patch1 -p1
 
 %build
@@ -75,15 +75,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1535824768
+export SOURCE_DATE_EPOCH=1539661750
 python2 setup.py build -b py2
 python3 setup.py build -b py3
 
 %install
-export SOURCE_DATE_EPOCH=1535824768
+export SOURCE_DATE_EPOCH=1539661750
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/certifi
-cp LICENSE %{buildroot}/usr/share/doc/certifi/LICENSE
+mkdir -p %{buildroot}/usr/share/package-licenses/certifi
+cp LICENSE %{buildroot}/usr/share/package-licenses/certifi/LICENSE
 python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
 python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
 echo ----[ mark ]----
@@ -98,8 +98,8 @@ echo ----[ mark ]----
 /usr/lib/python2*/*
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/certifi/LICENSE
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/certifi/LICENSE
 
 %files python
 %defattr(-,root,root,-)
