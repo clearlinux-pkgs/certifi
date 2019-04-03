@@ -6,7 +6,7 @@
 #
 Name     : certifi
 Version  : 2018.11.29
-Release  : 53
+Release  : 54
 URL      : https://files.pythonhosted.org/packages/55/54/3ce77783acba5979ce16674fc98b1920d00b01d337cfaaf5db22543505ed/certifi-2018.11.29.tar.gz
 Source0  : https://files.pythonhosted.org/packages/55/54/3ce77783acba5979ce16674fc98b1920d00b01d337cfaaf5db22543505ed/certifi-2018.11.29.tar.gz
 Source99 : https://files.pythonhosted.org/packages/55/54/3ce77783acba5979ce16674fc98b1920d00b01d337cfaaf5db22543505ed/certifi-2018.11.29.tar.gz.asc
@@ -17,28 +17,15 @@ Requires: certifi-license = %{version}-%{release}
 Requires: certifi-python = %{version}-%{release}
 Requires: certifi-python3 = %{version}-%{release}
 Requires: ca-certs
-BuildRequires : buildreq-distutils23
 BuildRequires : buildreq-distutils3
 Patch1: 0001-Use-unified-trust-store.patch
 
 %description
+Certifi: Python SSL Certificates
 ================================
-        
-        `Certifi`_ is a carefully curated collection of Root Certificates for
-        validating the trustworthiness of SSL certificates while verifying the identity
-        of TLS hosts. It has been extracted from the `Requests`_ project.
-        
-        Installation
-        ------------
-
-%package legacypython
-Summary: legacypython components for the certifi package.
-Group: Default
-Requires: python-core
-
-%description legacypython
-legacypython components for the certifi package.
-
+`Certifi`_ is a carefully curated collection of Root Certificates for
+validating the trustworthiness of SSL certificates while verifying the identity
+of TLS hosts. It has been extracted from the `Requests`_ project.
 
 %package license
 Summary: license components for the certifi package.
@@ -75,27 +62,22 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1543744086
-python2 setup.py build -b py2
-python3 setup.py build -b py3
+export SOURCE_DATE_EPOCH=1554314475
+export MAKEFLAGS=%{?_smp_mflags}
+python3 setup.py build
 
 %install
-export SOURCE_DATE_EPOCH=1543744086
+export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/certifi
 cp LICENSE %{buildroot}/usr/share/package-licenses/certifi/LICENSE
-python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
-python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
+python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
 
 %files
 %defattr(-,root,root,-)
-
-%files legacypython
-%defattr(-,root,root,-)
-/usr/lib/python2*/*
 
 %files license
 %defattr(0644,root,root,0755)
