@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x70FE17F8A643E15B (lukasa@keybase.io)
 #
 Name     : certifi
-Version  : 2018.11.29
-Release  : 55
-URL      : https://files.pythonhosted.org/packages/55/54/3ce77783acba5979ce16674fc98b1920d00b01d337cfaaf5db22543505ed/certifi-2018.11.29.tar.gz
-Source0  : https://files.pythonhosted.org/packages/55/54/3ce77783acba5979ce16674fc98b1920d00b01d337cfaaf5db22543505ed/certifi-2018.11.29.tar.gz
-Source99 : https://files.pythonhosted.org/packages/55/54/3ce77783acba5979ce16674fc98b1920d00b01d337cfaaf5db22543505ed/certifi-2018.11.29.tar.gz.asc
+Version  : 2019.6.16
+Release  : 56
+URL      : https://files.pythonhosted.org/packages/c5/67/5d0548226bcc34468e23a0333978f0e23d28d0b3f0c71a151aef9c3f7680/certifi-2019.6.16.tar.gz
+Source0  : https://files.pythonhosted.org/packages/c5/67/5d0548226bcc34468e23a0333978f0e23d28d0b3f0c71a151aef9c3f7680/certifi-2019.6.16.tar.gz
+Source99 : https://files.pythonhosted.org/packages/c5/67/5d0548226bcc34468e23a0333978f0e23d28d0b3f0c71a151aef9c3f7680/certifi-2019.6.16.tar.gz.asc
 Summary  : Python package for providing Mozilla's CA Bundle.
 Group    : Development/Tools
 License  : MPL-2.0
@@ -18,14 +18,18 @@ Requires: certifi-python = %{version}-%{release}
 Requires: certifi-python3 = %{version}-%{release}
 Requires: ca-certs
 BuildRequires : buildreq-distutils3
+BuildRequires : ca-certs
 Patch1: 0001-Use-unified-trust-store.patch
 
 %description
-Certifi: Python SSL Certificates
 ================================
-`Certifi`_ is a carefully curated collection of Root Certificates for
-validating the trustworthiness of SSL certificates while verifying the identity
-of TLS hosts. It has been extracted from the `Requests`_ project.
+        
+        `Certifi`_ is a carefully curated collection of Root Certificates for
+        validating the trustworthiness of SSL certificates while verifying the identity
+        of TLS hosts. It has been extracted from the `Requests`_ project.
+        
+        Installation
+        ------------
 
 %package license
 Summary: license components for the certifi package.
@@ -54,15 +58,20 @@ python3 components for the certifi package.
 
 
 %prep
-%setup -q -n certifi-2018.11.29
+%setup -q -n certifi-2019.6.16
 %patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1554314475
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1563470650
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$CFLAGS -fno-lto "
+export FFLAGS="$CFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
