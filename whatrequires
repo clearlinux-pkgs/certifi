@@ -1,13 +1,14 @@
 # This file contains recursive sources that require this package
 acme
 conda
-deprecated-urllib3
 docker-compose
 dulwich
-koji
+gabbi
 mercurial
 msrest
+openstack-setuptools
 requests
+setuptools
 uamqp
 urllib3
 wheelhouse-uploader
