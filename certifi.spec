@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x70FE17F8A643E15B (lukasa@keybase.io)
 #
 Name     : certifi
-Version  : 2019.9.11
-Release  : 58
-URL      : https://files.pythonhosted.org/packages/62/85/7585750fd65599e88df0fed59c74f5075d4ea2fe611deceb95dd1c2fb25b/certifi-2019.9.11.tar.gz
-Source0  : https://files.pythonhosted.org/packages/62/85/7585750fd65599e88df0fed59c74f5075d4ea2fe611deceb95dd1c2fb25b/certifi-2019.9.11.tar.gz
-Source1 : https://files.pythonhosted.org/packages/62/85/7585750fd65599e88df0fed59c74f5075d4ea2fe611deceb95dd1c2fb25b/certifi-2019.9.11.tar.gz.asc
+Version  : 2019.11.28
+Release  : 59
+URL      : https://files.pythonhosted.org/packages/41/bf/9d214a5af07debc6acf7f3f257265618f1db242a3f8e49a9b516f24523a6/certifi-2019.11.28.tar.gz
+Source0  : https://files.pythonhosted.org/packages/41/bf/9d214a5af07debc6acf7f3f257265618f1db242a3f8e49a9b516f24523a6/certifi-2019.11.28.tar.gz
+Source1 : https://files.pythonhosted.org/packages/41/bf/9d214a5af07debc6acf7f3f257265618f1db242a3f8e49a9b516f24523a6/certifi-2019.11.28.tar.gz.asc
 Summary  : Python package for providing Mozilla's CA Bundle.
 Group    : Development/Tools
 License  : MPL-2.0
@@ -19,7 +19,6 @@ Requires: certifi-python3 = %{version}-%{release}
 Requires: ca-certs
 BuildRequires : buildreq-distutils3
 BuildRequires : ca-certs
-BuildRequires : util-linux
 Patch1: 0001-Use-unified-trust-store.patch
 
 %description
@@ -56,8 +55,8 @@ python3 components for the certifi package.
 
 
 %prep
-%setup -q -n certifi-2019.9.11
-cd %{_builddir}/certifi-2019.9.11
+%setup -q -n certifi-2019.11.28
+cd %{_builddir}/certifi-2019.11.28
 %patch1 -p1
 
 %build
@@ -65,7 +64,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1575554636
+export SOURCE_DATE_EPOCH=1575557193
 # -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
@@ -79,7 +78,7 @@ python3 setup.py build
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/certifi
-cp %{_builddir}/certifi-2019.9.11/LICENSE %{buildroot}/usr/share/package-licenses/certifi/ea754e241e066d60aa3e231d0c05a88b06b564b4
+cp %{_builddir}/certifi-2019.11.28/LICENSE %{buildroot}/usr/share/package-licenses/certifi/ea754e241e066d60aa3e231d0c05a88b06b564b4
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
