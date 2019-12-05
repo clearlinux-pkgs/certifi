@@ -6,7 +6,7 @@
 #
 Name     : certifi
 Version  : 2019.9.11
-Release  : 57
+Release  : 58
 URL      : https://files.pythonhosted.org/packages/62/85/7585750fd65599e88df0fed59c74f5075d4ea2fe611deceb95dd1c2fb25b/certifi-2019.9.11.tar.gz
 Source0  : https://files.pythonhosted.org/packages/62/85/7585750fd65599e88df0fed59c74f5075d4ea2fe611deceb95dd1c2fb25b/certifi-2019.9.11.tar.gz
 Source1 : https://files.pythonhosted.org/packages/62/85/7585750fd65599e88df0fed59c74f5075d4ea2fe611deceb95dd1c2fb25b/certifi-2019.9.11.tar.gz.asc
@@ -23,14 +23,11 @@ BuildRequires : util-linux
 Patch1: 0001-Use-unified-trust-store.patch
 
 %description
+Certifi: Python SSL Certificates
 ================================
-        
-        `Certifi`_ is a carefully curated collection of Root Certificates for
-        validating the trustworthiness of SSL certificates while verifying the identity
-        of TLS hosts. It has been extracted from the `Requests`_ project.
-        
-        Installation
-        ------------
+`Certifi`_ is a carefully curated collection of Root Certificates for
+validating the trustworthiness of SSL certificates while verifying the identity
+of TLS hosts. It has been extracted from the `Requests`_ project.
 
 %package license
 Summary: license components for the certifi package.
@@ -68,7 +65,8 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1572534463
+export SOURCE_DATE_EPOCH=1575554636
+# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
