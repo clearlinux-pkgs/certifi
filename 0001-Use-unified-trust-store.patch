@@ -7,6 +7,8 @@ Expose user-managed CA certs to applications that require the certifi
 package by using the unified trust store.  This has a bonus side-effect
 of no longer distributing a copy of the Mozilla CA certs and instead
 relying on those distributed as a part of the ca-certs package.
+
+Signed-off-by: Patrick McCarty <patrick.mccarty@intel.com>
 ---
  MANIFEST.in                  | 2 +-
  certifi.egg-info/SOURCES.txt | 3 +--
@@ -39,22 +41,25 @@ index 04773ea..f5b8172 100644
 \ No newline at end of file
 +certifi.egg-info/top_level.txt
 diff --git a/certifi/core.py b/certifi/core.py
-index 7271acf..87cd51e 100644
+index 56b52a3..ab43d68 100644
 --- a/certifi/core.py
 +++ b/certifi/core.py
-@@ -10,6 +10,4 @@ import os
+@@ -21,9 +21,7 @@ except ImportError:
  
  
  def where():
 -    f = os.path.dirname(__file__)
 -
--    return os.path.join(f, 'cacert.pem')
+-    return os.path.join(f, "cacert.pem")
 +    return '/var/cache/ca-certs/compat/ca-roots.pem'
+ 
+ 
+ def contents():
 diff --git a/setup.py b/setup.py
-index 1a9cec0..ba8091e 100755
+index f1cfef4..eff96bf 100755
 --- a/setup.py
 +++ b/setup.py
-@@ -44,7 +44,6 @@ setup(
+@@ -43,7 +43,6 @@ setup(
          'certifi',
      ],
      package_dir={'certifi': 'certifi'},

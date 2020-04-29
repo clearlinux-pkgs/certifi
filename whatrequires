@@ -1,12 +1,15 @@
 # This file contains recursive sources that require this package
+Cura
 acme
 conda
 docker-compose
 dulwich
 gabbi
+geventhttpclient-wheels
 mercurial
 msrest
 openstack-setuptools
+performance
 requests
 setuptools
 uamqp
