@@ -6,6 +6,7 @@ docker-compose
 dulwich
 gabbi
 geventhttpclient-wheels
+home-assistant
 mercurial
 msrest
 openstack-setuptools
