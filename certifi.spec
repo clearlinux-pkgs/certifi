@@ -6,7 +6,7 @@
 #
 Name     : certifi
 Version  : 2020.6.20
-Release  : 64
+Release  : 65
 URL      : https://files.pythonhosted.org/packages/40/a7/ded59fa294b85ca206082306bba75469a38ea1c7d44ea7e1d64f5443d67a/certifi-2020.6.20.tar.gz
 Source0  : https://files.pythonhosted.org/packages/40/a7/ded59fa294b85ca206082306bba75469a38ea1c7d44ea7e1d64f5443d67a/certifi-2020.6.20.tar.gz
 Source1  : https://files.pythonhosted.org/packages/40/a7/ded59fa294b85ca206082306bba75469a38ea1c7d44ea7e1d64f5443d67a/certifi-2020.6.20.tar.gz.asc
@@ -19,7 +19,6 @@ Requires: certifi-python3 = %{version}-%{release}
 Requires: ca-certs
 BuildRequires : buildreq-distutils3
 BuildRequires : ca-certs
-Patch1: 0001-Use-unified-trust-store.patch
 
 %description
 ================================
@@ -61,14 +60,13 @@ python3 components for the certifi package.
 %prep
 %setup -q -n certifi-2020.6.20
 cd %{_builddir}/certifi-2020.6.20
-%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1600386200
+export SOURCE_DATE_EPOCH=1600387607
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
@@ -86,6 +84,10 @@ python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
+## install_append content
+sitedir=$(python3 -c 'import sysconfig; print(sysconfig.get_paths()["purelib"])')
+ln -sfv /var/cache/ca-certs/compat/ca-roots.pem %{buildroot}/$sitedir/certifi/cacert.pem
+## install_append end
 
 %files
 %defattr(-,root,root,-)
