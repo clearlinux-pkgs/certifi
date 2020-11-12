@@ -1,18 +1,13 @@
 # This file contains recursive sources that require this package
 Cura
 acme
+ceph
 conda
 docker-compose
-dulwich
-gabbi
-geventhttpclient-wheels
 home-assistant
+httpx
 mercurial
 msrest
-openstack-setuptools
-performance
 requests
 setuptools
-uamqp
 urllib3
-wheelhouse-uploader
