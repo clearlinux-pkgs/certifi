@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x70FE17F8A643E15B (lukasa@keybase.io)
 #
 Name     : certifi
-Version  : 2020.11.8
-Release  : 67
-URL      : https://files.pythonhosted.org/packages/e6/de/879cf857ae6f890dfa23c3d6239814c5471936b618c8fb0c8732ad5da885/certifi-2020.11.8.tar.gz
-Source0  : https://files.pythonhosted.org/packages/e6/de/879cf857ae6f890dfa23c3d6239814c5471936b618c8fb0c8732ad5da885/certifi-2020.11.8.tar.gz
-Source1  : https://files.pythonhosted.org/packages/e6/de/879cf857ae6f890dfa23c3d6239814c5471936b618c8fb0c8732ad5da885/certifi-2020.11.8.tar.gz.asc
+Version  : 2020.12.5
+Release  : 68
+URL      : https://files.pythonhosted.org/packages/06/a9/cd1fd8ee13f73a4d4f491ee219deeeae20afefa914dfb4c130cfc9dc397a/certifi-2020.12.5.tar.gz
+Source0  : https://files.pythonhosted.org/packages/06/a9/cd1fd8ee13f73a4d4f491ee219deeeae20afefa914dfb4c130cfc9dc397a/certifi-2020.12.5.tar.gz
+Source1  : https://files.pythonhosted.org/packages/06/a9/cd1fd8ee13f73a4d4f491ee219deeeae20afefa914dfb4c130cfc9dc397a/certifi-2020.12.5.tar.gz.asc
 Summary  : Python package for providing Mozilla's CA Bundle.
 Group    : Development/Tools
 License  : MPL-2.0
@@ -59,8 +59,8 @@ python3 components for the certifi package.
 
 
 %prep
-%setup -q -n certifi-2020.11.8
-cd %{_builddir}/certifi-2020.11.8
+%setup -q -n certifi-2020.12.5
+cd %{_builddir}/certifi-2020.12.5
 %patch1 -p1
 
 %build
@@ -68,7 +68,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1605193522
+export SOURCE_DATE_EPOCH=1607356621
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
@@ -81,7 +81,7 @@ python3 setup.py build
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/certifi
-cp %{_builddir}/certifi-2020.11.8/LICENSE %{buildroot}/usr/share/package-licenses/certifi/ea754e241e066d60aa3e231d0c05a88b06b564b4
+cp %{_builddir}/certifi-2020.12.5/LICENSE %{buildroot}/usr/share/package-licenses/certifi/ea754e241e066d60aa3e231d0c05a88b06b564b4
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :

@@ -6,6 +6,7 @@ conda
 docker-compose
 home-assistant
 httpx
+lutris
 mercurial
 msrest
 requests
