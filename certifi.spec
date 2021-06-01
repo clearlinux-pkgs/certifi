@@ -5,15 +5,14 @@
 # Source0 file verified with key 0x70FE17F8A643E15B (lukasa@keybase.io)
 #
 Name     : certifi
-Version  : 2020.12.5
-Release  : 74
-URL      : https://files.pythonhosted.org/packages/06/a9/cd1fd8ee13f73a4d4f491ee219deeeae20afefa914dfb4c130cfc9dc397a/certifi-2020.12.5.tar.gz
-Source0  : https://files.pythonhosted.org/packages/06/a9/cd1fd8ee13f73a4d4f491ee219deeeae20afefa914dfb4c130cfc9dc397a/certifi-2020.12.5.tar.gz
-Source1  : https://files.pythonhosted.org/packages/06/a9/cd1fd8ee13f73a4d4f491ee219deeeae20afefa914dfb4c130cfc9dc397a/certifi-2020.12.5.tar.gz.asc
+Version  : 2021.5.30
+Release  : 75
+URL      : https://files.pythonhosted.org/packages/6d/78/f8db8d57f520a54f0b8a438319c342c61c22759d8f9a1cd2e2180b5e5ea9/certifi-2021.5.30.tar.gz
+Source0  : https://files.pythonhosted.org/packages/6d/78/f8db8d57f520a54f0b8a438319c342c61c22759d8f9a1cd2e2180b5e5ea9/certifi-2021.5.30.tar.gz
+Source1  : https://files.pythonhosted.org/packages/6d/78/f8db8d57f520a54f0b8a438319c342c61c22759d8f9a1cd2e2180b5e5ea9/certifi-2021.5.30.tar.gz.asc
 Summary  : Python package for providing Mozilla's CA Bundle.
 Group    : Development/Tools
 License  : MPL-2.0
-Requires: certifi-license = %{version}-%{release}
 Requires: certifi-python = %{version}-%{release}
 Requires: certifi-python3 = %{version}-%{release}
 Requires: ca-certs
@@ -30,14 +29,6 @@ Patch1: 0001-Use-unified-trust-store.patch
         
         Installation
         ------------
-
-%package license
-Summary: license components for the certifi package.
-Group: Default
-
-%description license
-license components for the certifi package.
-
 
 %package python
 Summary: python components for the certifi package.
@@ -59,8 +50,8 @@ python3 components for the certifi package.
 
 
 %prep
-%setup -q -n certifi-2020.12.5
-cd %{_builddir}/certifi-2020.12.5
+%setup -q -n certifi-2021.5.30
+cd %{_builddir}/certifi-2021.5.30
 %patch1 -p1
 
 %build
@@ -68,7 +59,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1607356621
+export SOURCE_DATE_EPOCH=1622557827
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
@@ -80,8 +71,6 @@ python3 setup.py build
 %install
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/package-licenses/certifi
-cp %{_builddir}/certifi-2020.12.5/LICENSE %{buildroot}/usr/share/package-licenses/certifi/ea754e241e066d60aa3e231d0c05a88b06b564b4
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
@@ -89,10 +78,6 @@ echo ----[ mark ]----
 
 %files
 %defattr(-,root,root,-)
-
-%files license
-%defattr(0644,root,root,0755)
-/usr/share/package-licenses/certifi/ea754e241e066d60aa3e231d0c05a88b06b564b4
 
 %files python
 %defattr(-,root,root,-)

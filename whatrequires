@@ -7,8 +7,11 @@ docker-compose
 home-assistant
 httpx
 lutris
+matplotlib
 mercurial
 msrest
 requests
 setuptools
+uamqp
 urllib3
+vpp
