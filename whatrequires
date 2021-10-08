@@ -1,6 +1,7 @@
 # This file contains recursive sources that require this package
 Cura
 acme
+ansible
 ceph
 conda
 docker-compose
@@ -11,7 +12,6 @@ matplotlib
 mercurial
 msrest
 requests
-setuptools
 uamqp
 urllib3
 vpp
