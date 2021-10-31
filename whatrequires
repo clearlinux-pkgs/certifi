@@ -11,6 +11,7 @@ lutris
 matplotlib
 mercurial
 msrest
+python-zstandard
 requests
 uamqp
 urllib3
